@@ -1,7 +1,12 @@
-import contacts from './../controllers/contacts';
+import Contacts from './../controllers/contacts';
 
 function routesConfig(app) {
-  app.get('/contacts/:page', contacts.get);
+  app.get('/', (req, res) => {
+    res.sendFile('index.html', { root: __dirname });
+  });
+
+  app.get('/contacts/count/', Contacts.count);
+  app.get('/contacts/:page', Contacts.get);
 }
 
 export default routesConfig;
