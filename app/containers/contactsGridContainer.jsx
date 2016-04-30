@@ -28,18 +28,18 @@ class ContactsGridContainer extends React.Component {
     const that = this;
 
     axios.get('/contacts/count/')
-         .then((response) => {
-           that.setState({ maxPages: Math.ceil(response.data / that.state.resultsPerPage) });
-         });
+      .then((response) => {
+        that.setState({ maxPages: Math.ceil(response.data / that.state.resultsPerPage) });
+      });
   }
 
   getExternalData(page) {
     const that = this;
 
     axios.get(`/contacts/${page}`)
-         .then((response) => {
-           that.setState({ results: [...that.state.results, ...response.data], currentPage: page });
-         });
+      .then((response) => {
+        that.setState({ results: [...that.state.results, ...response.data], currentPage: page });
+      });
   }
 
   render() {
@@ -52,9 +52,9 @@ class ContactsGridContainer extends React.Component {
         resultsPerPage={this.state.resultsPerPage}
         results={this.state.results}
         enableInfiniteScroll
-        externalChangeSort={() => {}}
-        externalSetFilter={() => {}}
-        externalSetPageSize={() => {}}
+        externalChangeSort={() => { }}
+        externalSetFilter={() => { }}
+        externalSetPageSize={() => { }}
         bodyHeight={400}
         useFixedHeader
       />);
