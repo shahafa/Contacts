@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs-extra');
 const webpack = require('webpack');
 const webpackConfig = require('./../../webpack.config');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -11,7 +10,11 @@ function expressConfig(app) {
   app.set('port', (process.env.PORT || 3000));
 
   // Refers to the root directory from which the static assets are to be served
-  app.use(express.static(path.join(__dirname, '../..', 'dist')));
+  let staticPath = path.join(__dirname, '../..', 'dist/');
+  if (process.env.NODE_ENV === 'development') {
+    staticPath = path.join(__dirname, '../..', 'app/');
+  }
+  app.use(express.static(staticPath));
 
   // Indicates the app is behind a front-facing proxy,
   // and to use the X-Forwarded-* headers to determine the connection and the
@@ -23,11 +26,8 @@ function expressConfig(app) {
   // It can be removed safely
   app.disable('x-powered-by');
 
-  const ENV = process.env.NODE_ENV || 'production';
-  if (ENV === 'development') {
-    fs.removeSync(path.join(__dirname, '../..', 'dist/'));
-    fs.copy(path.join(__dirname, '../..', 'app/index.html'), path.join(__dirname, '../..', 'dist/index.html'));
-
+  // Sets webpack hot reloading in devlopment mode
+  if (process.env.NODE_ENV === 'development') {
     const compiler = webpack(webpackConfig);
     app.use(webpackDevMiddleware(compiler, {
       noInfo: true,
