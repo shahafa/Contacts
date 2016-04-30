@@ -4,7 +4,7 @@ const path = require('path');
 function routesConfig(app) {
   app.get('/', (req, res) => {
     res.sendFile('index.html', {
-      root: path.join(__dirname, '../..', 'dist')
+      root: path.join(__dirname, '../')
     });
   });
 

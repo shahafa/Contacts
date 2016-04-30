@@ -1,5 +1,9 @@
 const express = require('express');
 const path = require('path');
+const webpack = require('webpack');
+const webpackConfig = require('./../../webpack.config');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 
 function expressConfig(app) {
   // Sets the app port
@@ -17,6 +21,17 @@ function expressConfig(app) {
   // Keeping it makes it easier for an attacker to build the site's profile
   // It can be removed safely
   app.disable('x-powered-by');
+
+  const ENV = process.env.NODE_ENV || 'development';
+  if (ENV === 'development') {
+    const compiler = webpack(webpackConfig);
+    app.use(webpackDevMiddleware(compiler, {
+      noInfo: true,
+      publicPath: webpackConfig.output.publicPath
+    }));
+
+    app.use(webpackHotMiddleware(compiler));
+  }
 }
 
 module.exports = expressConfig;
