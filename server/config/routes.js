@@ -1,9 +1,10 @@
 const Contacts = require('./../controllers/Contacts');
+const path = require('path');
 
 function routesConfig(app) {
   app.get('/', (req, res) => {
     res.sendFile('index.html', {
-      root: __dirname
+      root: path.join(__dirname, '../..', 'dist')
     });
   });
 

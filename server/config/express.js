@@ -6,7 +6,7 @@ function expressConfig(app) {
   app.set('port', (process.env.PORT || 3000));
 
   // Refers to the root directory from which the static assets are to be served
-  app.use(express.static(path.join(__dirname, '../..', 'build')));
+  app.use(express.static(path.join(__dirname, '../..', 'dist')));
 
   // Indicates the app is behind a front-facing proxy,
   // and to use the X-Forwarded-* headers to determine the connection and the
