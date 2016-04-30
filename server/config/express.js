@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs-extra');
 const webpack = require('webpack');
 const webpackConfig = require('./../../webpack.config');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -22,8 +23,11 @@ function expressConfig(app) {
   // It can be removed safely
   app.disable('x-powered-by');
 
-  const ENV = process.env.NODE_ENV || 'development';
+  const ENV = process.env.NODE_ENV || 'production';
   if (ENV === 'development') {
+    fs.removeSync(path.join(__dirname, '../..', 'dist/'));
+    fs.copy(path.join(__dirname, '../..', 'app/index.html'), path.join(__dirname, '../..', 'dist/index.html'));
+
     const compiler = webpack(webpackConfig);
     app.use(webpackDevMiddleware(compiler, {
       noInfo: true,
