@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-function dbConnect() {
+function connect() {
   mongoose.connect('mongodb://192.168.99.100:27017/Contacts');
 }
 
-export default dbConnect;
+module.exports = connect;

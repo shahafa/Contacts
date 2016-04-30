@@ -1,12 +1,14 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({
   idNumber: String,
   firstName: String,
   lastName: String,
   phone: String
-}, { collection: 'Contacts' });
+}, {
+  collection: 'Contacts'
+});
 
 const contacts = mongoose.model('Contacts', contactSchema);
 
-export default contacts;
+module.exports = contacts;

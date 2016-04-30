@@ -1,7 +1,7 @@
-import express from 'express';
-import dbConnect from './config/db';
-import expressConfig from './config/express';
-import routesConfig from './config/routes';
+const express = require('express');
+const dbConnect = require('./config/db');
+const expressConfig = require('./config/express');
+const routesConfig = require('./config/routes');
 
 const app = express();
 

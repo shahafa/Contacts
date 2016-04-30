@@ -1,5 +1,5 @@
-import express from 'express';
-import path from 'path';
+const express = require('express');
+const path = require('path');
 
 function expressConfig(app) {
   // Sets the app port
@@ -19,4 +19,4 @@ function expressConfig(app) {
   app.disable('x-powered-by');
 }
 
-export default expressConfig;
+module.exports = expressConfig;
