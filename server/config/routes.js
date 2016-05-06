@@ -13,6 +13,7 @@ function routesConfig(app) {
     });
   });
 
+  app.get('/contacts', Contacts.getRange);
   app.get('/contacts/count/', Contacts.count);
   app.get('/contacts/:page', Contacts.get);
 }
