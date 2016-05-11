@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
-import { fetchRowsIfNeeded } from '../actions/actions.js';
+import { fetchRows } from '../actions/actions.js';
 import Grid from '../components/Grid.jsx';
 
 const mapStateToProps = (state) => ({
   rows: state.rows,
-  isFetching: state.isFetching
+  isFetchingRows: state.isFetchingRows
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchRowsIfNeeded: () => {
-    dispatch(fetchRowsIfNeeded());
+  fetchRows: () => {
+    dispatch(fetchRows());
   }
 });
 

@@ -8,7 +8,8 @@ import GridContainer from './containers/GridContainer.jsx';
 
 const initialState = {
   rows: [],
-  isFetching: false
+  rowsPage: 0,
+  isFetchingRows: false
 };
 
 const store = createStore(reducers, initialState, applyMiddleware(thunkMiddleware));

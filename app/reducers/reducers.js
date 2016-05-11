@@ -1,22 +1,19 @@
 import {
   REQUEST_ROWS,
   RECEIVE_ROWS
-} from './../actions/actions.js';
+} from '../actions/actions.js';
 
-function rows(
-  state = {
-    isFetching: false,
-    rows: []
-  }, action) {
+function rows(state, action) {
   switch (action.type) {
     case REQUEST_ROWS:
       return Object.assign({}, state, {
-        isFetching: true,
+        isFetchingRows: true,
       });
     case RECEIVE_ROWS:
       return Object.assign({}, state, {
-        isFetching: false,
-        rows: action.rows
+        isFetchingRows: false,
+        rows: action.rows,
+        rowsPage: state.rowsPage + 1
       });
     default:
       return state;

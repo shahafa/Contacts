@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 export default class Grid extends React.Component {
   componentDidMount() {
-    this.props.fetchRowsIfNeeded();
+    this.props.fetchRows();
   }
 
   render() {
@@ -13,5 +13,5 @@ export default class Grid extends React.Component {
 }
 
 Grid.propTypes = {
-  fetchRowsIfNeeded: PropTypes.func.isRequired
+  fetchRows: PropTypes.func.isRequired
 };
