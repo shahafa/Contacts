@@ -1,13 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import CounterContainer from './containers/CounterContainer.jsx';
+import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/reducers.js';
+import thunkMiddleware from 'redux-thunk';
+import GridContainer from './containers/GridContainer.jsx';
 
-const store = createStore(reducers, { counterValue: 0 });
+const initialState = {
+  rows: [],
+  isFetching: false
+};
+
+const store = createStore(reducers, initialState, applyMiddleware(thunkMiddleware));
 
 render(
   <Provider store={store}>
-    <CounterContainer />
+    <GridContainer />
   </Provider>, document.getElementById('content'));

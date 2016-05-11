@@ -1,10 +1,26 @@
-export default function counter(state, action) {
+import {
+  REQUEST_ROWS,
+  RECEIVE_ROWS
+} from './../actions/actions.js';
+
+function rows(
+  state = {
+    isFetching: false,
+    rows: []
+  }, action) {
   switch (action.type) {
-    case 'INCREMENT_COUNTER':
+    case REQUEST_ROWS:
       return Object.assign({}, state, {
-        counterValue: state.counterValue + 1
+        isFetching: true,
+      });
+    case RECEIVE_ROWS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        rows: action.rows
       });
     default:
       return state;
   }
 }
+
+export default rows;
