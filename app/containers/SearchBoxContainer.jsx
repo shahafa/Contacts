@@ -1,15 +1,18 @@
 import { connect } from 'react-redux';
-import { fetchRows } from '../actions/actions.js';
-import Grid from '../components/Grid.jsx';
+import { setSearchQuery, clearRows, fetchRows } from '../actions/actions.js';
+import SearchBox from '../components/SearchBox.jsx';
 
 const mapStateToProps = (state) => ({
-  rows: state.rows,
-  isFetchingRows: state.isFetchingRows,
   searchQuery: state.searchQuery
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchRows: () => {
+  setSearchQuery: (searchQuery) => {
+    dispatch(setSearchQuery(searchQuery));
+  },
+
+  reloadRows: () => {
+    dispatch(clearRows());
     dispatch(fetchRows());
   }
 });
@@ -17,6 +20,6 @@ const mapDispatchToProps = (dispatch) => ({
 const GridContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Grid);
+)(SearchBox);
 
 export default GridContainer;

@@ -4,17 +4,18 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/reducers.js';
 import thunkMiddleware from 'redux-thunk';
-import GridContainer from './containers/GridContainer.jsx';
+import App from './components/App.jsx';
 
 const initialState = {
   rows: [],
   rowsPage: 0,
-  isFetchingRows: false
+  isFetchingRows: false,
+  searchQuery: ''
 };
 
 const store = createStore(reducers, initialState, applyMiddleware(thunkMiddleware));
 
 render(
   <Provider store={store}>
-    <GridContainer />
+    <App />
   </Provider>, document.getElementById('content'));

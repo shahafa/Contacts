@@ -13,9 +13,8 @@ function routesConfig(app) {
     });
   });
 
-  app.get('/contacts', Contacts.getRange);
+  app.get('/contacts', Contacts.get);
   app.get('/contacts/count/', Contacts.count);
-  app.get('/contacts/:page', Contacts.get);
 }
 
 module.exports = routesConfig;
