@@ -19,14 +19,14 @@ function receiveRows(rows) {
 }
 
 export function fetchRows() {
-  return (dispatch, state) => {
-    if (state.isFetchingRows) {
+  return (dispatch, getState) => {
+    if (getState().isFetchingRows) {
       return null;
     }
 
     dispatch(requestRows());
 
-    return axios.get(`/contacts/${state.rowsPage}`)
+    return axios.get(`/contacts/${getState().rowsPage}`)
       .then(response => response.data)
       .then(json => dispatch(receiveRows(json)));
   };

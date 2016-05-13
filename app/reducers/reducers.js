@@ -12,7 +12,7 @@ function rows(state, action) {
     case RECEIVE_ROWS:
       return Object.assign({}, state, {
         isFetchingRows: false,
-        rows: action.rows,
+        rows: [...state.rows, ...action.rows],
         rowsPage: state.rowsPage + 1
       });
     default:
