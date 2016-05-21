@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchRows } from '../actions/actions.js';
+import { fetchRows, openCard } from '../actions/actions.js';
 import Grid from '../components/Grid.jsx';
 
 const mapStateToProps = (state) => ({
@@ -11,6 +11,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchRows: () => {
     dispatch(fetchRows());
+  },
+
+  openCard: (cardDetails) => {
+    dispatch(openCard(cardDetails));
   }
 });
 

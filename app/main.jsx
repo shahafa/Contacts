@@ -10,7 +10,8 @@ const initialState = {
   rows: [],
   rowsPage: 0,
   isFetchingRows: false,
-  searchQuery: ''
+  searchQuery: '',
+  showCard: false
 };
 
 const store = createStore(reducers, initialState, applyMiddleware(thunkMiddleware));
@@ -18,4 +19,4 @@ const store = createStore(reducers, initialState, applyMiddleware(thunkMiddlewar
 render(
   <Provider store={store}>
     <App />
-  </Provider>, document.getElementById('content'));
+  </Provider>, document.getElementById('app'));

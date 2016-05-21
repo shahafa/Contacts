@@ -4,6 +4,8 @@ export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
 export const REQUEST_ROWS = 'REQUEST_ROWS';
 export const RECEIVE_ROWS = 'RECEIVE_ROWS';
 export const CLEAR_ROWS = 'RELOAD_ROWS';
+export const OPEN_CARD = 'OPEN_CARD';
+export const CLOSE_CARD = 'CLOSE_CARD';
 
 export function setSearchQuery(searchQuery) {
   return {
@@ -44,5 +46,20 @@ export function fetchRows() {
 export function clearRows() {
   return {
     type: CLEAR_ROWS
+  };
+}
+
+export function openCard(cardDetails) {
+  return {
+    type: OPEN_CARD,
+    showCard: true,
+    cardDetails
+  };
+}
+
+export function closeCard() {
+  return {
+    type: CLOSE_CARD,
+    showCard: false
   };
 }
